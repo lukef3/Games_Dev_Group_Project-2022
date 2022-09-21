@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6028659084906899175
+--- !u!1 &3690249422526996019
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1011587862849912022}
-  - component: {fileID: 4260822238715321181}
-  - component: {fileID: 1508881450000348331}
-  - component: {fileID: 268512829402803495}
-  - component: {fileID: -9005080367691466302}
+  - component: {fileID: 8799511251409827431}
+  - component: {fileID: 95107788918426712}
+  - component: {fileID: 4533126993077655951}
+  - component: {fileID: 2188580441794740239}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -20,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1011587862849912022
+--- !u!4 &8799511251409827431
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028659084906899175}
+  m_GameObject: {fileID: 3690249422526996019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,30 +34,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!193 &4260822238715321181
+--- !u!193 &95107788918426712
 Tree:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028659084906899175}
+  m_GameObject: {fileID: 3690249422526996019}
   m_SpeedTreeWindAsset: {fileID: 0}
-  m_TreeData: {fileID: -1025157405930428374}
---- !u!33 &1508881450000348331
+  m_TreeData: {fileID: 4101281564894610877}
+--- !u!33 &4533126993077655951
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028659084906899175}
-  m_Mesh: {fileID: 8120359496370256202}
---- !u!23 &268512829402803495
+  m_GameObject: {fileID: 3690249422526996019}
+  m_Mesh: {fileID: 6170288016030919056}
+--- !u!23 &2188580441794740239
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028659084906899175}
+  m_GameObject: {fileID: 3690249422526996019}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -72,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -770651413245784463}
+  - {fileID: -6797009735675630547}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,19 +93,49 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-9005080367691466302
-MonoBehaviour:
+--- !u!21 &-6797009735675630547
+Material:
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028659084906899175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef5c38c0c9d0ae74584819a3e8c6c2e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!21 &-7675556936987161809
+  m_Name: Optimized Bark Material
+  m_Shader: {fileID: 10604, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpSpecMap:
+        m_Texture: {fileID: 2800000, guid: eef5e337960e16a4e9ee6de03cb84355, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: ad4d0f96a974009418b11bb5231372a7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TranslucencyMap:
+        m_Texture: {fileID: 2800000, guid: 89cfadccfad9bb4418bbf702cfc1424d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Cutoff: 0.3
+    - _SquashAmount: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+--- !u!21 &3436504850243168163
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -127,19 +156,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpSpecMap:
-        m_Texture: {fileID: 2800000, guid: 3e471cd35dff83e44ab0f79064fcde35, type: 3}
+        m_Texture: {fileID: 2800000, guid: eef5e337960e16a4e9ee6de03cb84355, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4acf2acf80e96c24ab0580e04e2a7929, type: 3}
+        m_Texture: {fileID: 2800000, guid: ad4d0f96a974009418b11bb5231372a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowTex:
-        m_Texture: {fileID: 2800000, guid: fac2a122ccb94d24b877abf72ef16314, type: 3}
+        m_Texture: {fileID: 2800000, guid: 17e207073075c4a4cb3ffb1b3f25e782, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TranslucencyMap:
-        m_Texture: {fileID: 2800000, guid: 0c7a57b5e448c604084aace6157d09f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 89cfadccfad9bb4418bbf702cfc1424d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -155,7 +184,7 @@ Material:
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &-1025157405930428374
+--- !u!114 &4101281564894610877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -685,108 +714,11 @@ MonoBehaviour:
     parentID: 2
     groupID: 3
     _uniqueID: 4
-  mesh: {fileID: 8120359496370256202}
-  optimizedSolidMaterial: {fileID: -770651413245784463}
-  optimizedCutoutMaterial: {fileID: -7675556936987161809}
+  mesh: {fileID: 6170288016030919056}
+  optimizedSolidMaterial: {fileID: -6797009735675630547}
+  optimizedCutoutMaterial: {fileID: 3436504850243168163}
   isInPreviewMode: 0
---- !u!21 &-770651413245784463
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Optimized Bark Material
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpSpecMap:
-        m_Texture: {fileID: 2800000, guid: 3e471cd35dff83e44ab0f79064fcde35, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4acf2acf80e96c24ab0580e04e2a7929, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TranslucencyMap:
-        m_Texture: {fileID: 2800000, guid: 0c7a57b5e448c604084aace6157d09f5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _Cull: 2
-    - _Cutoff: 0.3
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0
-    - _GlossyReflections: 1
-    - _Metallic: 1
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SquashAmount: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _WindQuality: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 0.8679245, g: 0.12691349, b: 0.12691349, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
---- !u!43 &8120359496370256202
+--- !u!43 &6170288016030919056
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
