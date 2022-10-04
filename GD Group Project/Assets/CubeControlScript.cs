@@ -5,7 +5,7 @@ using TMPro;
 
 public class CubeControlScript : MonoBehaviour
 {
-    public TMP_Text FloatingText;
+
     public ParticleSystem Explosion;
 
     TimerScript my_timer;
@@ -23,7 +23,7 @@ public class CubeControlScript : MonoBehaviour
             my_timer.setCooldown(10);
         }
 
-        UpdateTextBoxes();
+    
         print(my_timer.RemainingTime);
 
         if(my_timer.RemainingTime == 0)
@@ -32,8 +32,5 @@ public class CubeControlScript : MonoBehaviour
         }
     }
 
-    void UpdateTextBoxes()
-    {
-        FloatingText.text = my_timer.RemainingTime.ToString("0");
-    }
+
 }
