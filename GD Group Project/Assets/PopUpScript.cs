@@ -38,12 +38,22 @@ public class PopUpScript : MonoBehaviour
 
             case PopUpStates.NearEnd:
 
-
+         
                 break;
 
 
             case PopUpStates.End:
+                //Player collects coin
+                void OnCollisionEnter(Collision other)
+                {
+                    if (other.gameObject.tag == "PopUp")
+                    {
+                        Destroy(gameObject);
+                        //or gameObject.SetActive(false);
+                    }
+                }
 
+                //or coin disappears after some certain time
 
 
                 break;

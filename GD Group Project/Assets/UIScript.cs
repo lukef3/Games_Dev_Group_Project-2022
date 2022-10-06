@@ -24,6 +24,20 @@ public class UIScript : MonoBehaviour
         
     }
 
+
+    internal void setrelativeposition(Vector2 v)
+    {
+        // x = 0 is left  x = 1 right
+        // y = 0 is down  y = 1 is up
+
+        Resolution[] resolutions = Screen.resolutions;
+
+        long percentage_x = (Screen.width / 100), percentage_y = (Screen.height / 100);
+ 
+        setPosition(new Vector2(percentage_x, percentage_y));
+
+    }
+
     internal void setPosition(Vector3 v)
     {
         textOfUI.rectTransform.position = v;
