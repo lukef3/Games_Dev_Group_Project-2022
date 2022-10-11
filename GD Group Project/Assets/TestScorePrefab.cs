@@ -6,7 +6,7 @@ public class TestScorePrefab : MonoBehaviour
 {
 
     public Transform ScoreTemplate;
-
+    public float x, y, z;
     UIScript Score, Health;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,12 @@ public class TestScorePrefab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Score.setPosition(new Vector2(x, y));
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Score.setPosition(new Vector3(540, 0, 0));
-            Health.setPosition(new Vector3(540, 0, 0));
+           
+            Health.setPosition(new Vector2(75, 75));
         }
 
         if (Input.GetKeyDown(KeyCode.H))
