@@ -7,6 +7,9 @@ public class JoeControlScript : MonoBehaviour
 {
     enum CharacterStates {Grounded, JumpUp, Falling }
 
+    internal Transform myRightHand;
+
+    BombScript joesBomb;
     CharacterStates joe_state = CharacterStates.Grounded;
     private Vector3 jumping_velocity;
     float start_jump_velocity = 5;
@@ -22,13 +25,31 @@ public class JoeControlScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        myRightHand = getRightHand();
+
         joe_animator = GetComponent<Animator>();
         if (joe_animator)
             print("Found");
         else
             print("Animator not found");
 
+    }
+
+    private Transform getRightHand()
+    {
+        Transform[] allBones = transform.GetComponentsInChildren<Transform>();
+        foreach (Transform bone in allBones)
+        {
+            if (bone.name == "basic_rig R Hand")
+            {
+                return bone;
+
+            }
+
+
+        }
+
+        return null;
     }
 
     // Update is called once per frame
@@ -46,7 +67,8 @@ public class JoeControlScript : MonoBehaviour
                 if (shouldWalkBackwards()) walk_backwards();
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
-
+                if (shouldPickUp()) pickUp();
+                if (shouldThrowBomb()) throwBomb();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -94,6 +116,34 @@ public class JoeControlScript : MonoBehaviour
 
 
 
+    }
+
+    private void throwBomb()
+    {
+        if (joesBomb) joesBomb.BombThrow(transform.forward, 10);
+        else
+            print("opps no bomb!!!");
+    }
+
+    private bool shouldThrowBomb()
+    {
+        return Input.GetKeyDown(KeyCode.T);
+    }
+
+    private void pickUp()
+    {
+       Collider[] allPossibleBombs = Physics.OverlapSphere(transform.position, 1f);
+    foreach (Collider c in allPossibleBombs)
+        {
+            joesBomb = c.transform.GetComponent<BombScript>();
+            joesBomb.IvePickedYou(this);
+        }
+    
+    }
+
+    private bool shouldPickUp()
+    {
+        return Input.GetKeyDown(KeyCode.E);
     }
 
     private void jump()
