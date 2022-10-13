@@ -55,7 +55,7 @@ public class JoeControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        current_speed = 0;
 
 
         switch (joe_state)
@@ -120,7 +120,11 @@ public class JoeControlScript : MonoBehaviour
 
     private void throwBomb()
     {
-        if (joesBomb) joesBomb.BombThrow(transform.forward, 10);
+        if (joesBomb)
+        {
+            joesBomb.BombThrow(transform.forward, 5);
+            joesBomb = null;
+        }
         else
             print("opps no bomb!!!");
     }
@@ -132,11 +136,19 @@ public class JoeControlScript : MonoBehaviour
 
     private void pickUp()
     {
-       Collider[] allPossibleBombs = Physics.OverlapSphere(transform.position, 1f);
+    Collider[] allPossibleBombs = Physics.OverlapSphere(transform.position, 1f);
     foreach (Collider c in allPossibleBombs)
         {
-            joesBomb = c.transform.GetComponent<BombScript>();
-            joesBomb.IvePickedYou(this);
+            BombScript newBomb = c.transform.GetComponent<BombScript>();
+            if (newBomb)
+            {   if (joesBomb == null)
+                {
+                    joesBomb = newBomb;
+                    joesBomb.IvePickedYou(this);
+                }
+            }
+
+          
         }
     
     }
