@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5035086872339445003}
   - component: {fileID: 5035086872339445000}
   - component: {fileID: 5035086872339445001}
-  - component: {fileID: 5035086872339444998}
   - component: {fileID: 5035086872339444999}
+  - component: {fileID: 9055288049288421853}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5035086872339444998
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035086872339444996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5035086872339444999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffef27663f5bfa943b7d4308eba3e377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &9055288049288421853
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5035086872339444996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
