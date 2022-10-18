@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BombTestScript : MonoBehaviour
 {
+    BombScript myBomb;
     public Transform BombTemplate;
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
@@ -16,7 +18,16 @@ public class BombTestScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Instantiate(BombTemplate);
+          Transform newBomb =  Instantiate(BombTemplate);
+          myBomb =  newBomb.GetComponent<BombScript>();
+            myBomb.transform.position =
+                new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
+
+
         }
+
+ 
+
+
     }
 }
