@@ -26,9 +26,9 @@ public class TestScorePrefab : MonoBehaviour
         Score.setPosition(new Vector2(x, y));
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-           
-            Health.setPosition(new Vector2(75, 75));
+        {          
+            Health.setPosition(new Vector2(100, 100));
+            Score.setPosition(new Vector2(100, 100));
         }
 
         if (Input.GetKeyDown(KeyCode.H))
