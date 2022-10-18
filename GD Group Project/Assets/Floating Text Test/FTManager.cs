@@ -6,7 +6,7 @@ public class FTManager : MonoBehaviour
 {
 
     FTScript newFT;
-    public Transform FTCloneTemplate;
+    public static Transform FTCloneTemplate;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class FTManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (false)
         {
             GameObject GOnew = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             Transform holdFTGO =   Instantiate(FTCloneTemplate);

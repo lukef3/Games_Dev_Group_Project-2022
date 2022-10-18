@@ -9,23 +9,33 @@ public class FTScript : MonoBehaviour
 
     TMP_Text FloatingText;
     TimerScript my_timer;
+    private Color textColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        my_timer = gameObject.AddComponent<TimerScript>();
-        my_timer.setCooldown(10);
         FloatingText = GetComponentInChildren<TMP_Text>();
+    }
+
+    internal void setText(String textMessage)
+    {
+        FloatingText.text = textMessage;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FloatingText.text = my_timer.RemainingTime.ToString("0");
-        print(my_timer.RemainingTime);
+        if (FloatingText)
+            FloatingText.color = textColor;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            my_timer.setCooldown(20);
-        }
+        Vector3 FTtoCamera = Camera.main.transform.position - transform.position;
+
+        transform.rotation = Quaternion.LookRotation(-FTtoCamera.normalized, Vector3.up);
+  
+    }
+
+    internal void setColour(Color colorProvided)
+    {
+        textColor = colorProvided;
     }
 }
