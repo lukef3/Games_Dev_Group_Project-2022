@@ -8,6 +8,8 @@ public class BombScript : MonoBehaviour
     BombStates currentState = BombStates.Waiting;
     FTScript timerFT;
     TimerScript bombTimer;
+    public GameObject Explosion;
+    public Boolean hasExploded = false; 
 
     Vector3 Velocity, Acceleration;
     private float BombTime = 5f;
@@ -20,7 +22,8 @@ public class BombScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        print(BombStates.Exploding);
         switch(currentState)
         {
             case BombStates.Waiting:
@@ -77,12 +80,22 @@ public class BombScript : MonoBehaviour
                 break;
 
             case BombStates.Exploding:
-
-
+                Explode();
                 break;
         }
 
 
+    }
+
+
+    public void Explode()
+    {
+        if(hasExploded == false)
+        {
+            GameObject ExplosionGO = Instantiate(Explosion, this.transform.localPosition, this.transform.rotation);
+            hasExploded = true;
+            Destroy(this.gameObject);
+        }
     }
 
     public void BombThrow(Vector3 Dir, float Speed)
