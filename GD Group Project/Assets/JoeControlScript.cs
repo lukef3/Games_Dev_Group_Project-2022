@@ -10,6 +10,9 @@ public class JoeControlScript : MonoBehaviour
     internal Transform myRightHand;
 
     BombScript joesBomb;
+
+    GunScript joesGun;
+
     CharacterStates joe_state = CharacterStates.Grounded;
     private Vector3 jumping_velocity;
     float start_jump_velocity = 5;
@@ -69,6 +72,7 @@ public class JoeControlScript : MonoBehaviour
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
                 if (shouldThrowBomb()) throwBomb();
+                if (shouldFireGun()) FireGun();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -118,6 +122,16 @@ public class JoeControlScript : MonoBehaviour
 
     }
 
+    private void FireGun()
+    {
+        throw new NotImplementedException();
+    }
+
+    private bool shouldFireGun()
+    {
+        return Input.GetKeyDown(KeyCode.F);
+    }
+
     private void throwBomb()
     {
         if (joesBomb)
@@ -139,13 +153,23 @@ public class JoeControlScript : MonoBehaviour
     Collider[] allPossibleBombs = Physics.OverlapSphere(transform.position, 1f);
     foreach (Collider c in allPossibleBombs)
         {
+            print("j");
             BombScript newBomb = c.transform.GetComponent<BombScript>();
+            GunScript newGun = c.transform.GetComponentInParent<GunScript>();
             if (newBomb)
             {   if (joesBomb == null)
                 {
                     joesBomb = newBomb;
                     joesBomb.IvePickedYou(this);
                 }
+            }
+
+            if (newGun)
+            {
+                joesBomb = null;
+                newGun.IvePickedYou(this);
+                joesGun = newGun;
+                print("DllNotFoundException Gun");
             }
 
           
