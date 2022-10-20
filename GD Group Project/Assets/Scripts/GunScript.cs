@@ -3,23 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunScript : MonoBehaviour
+public class GunScript : PickUP
 {
 
     public Transform bulletCloneTemplate;
 
-    enum GunStates { Waiting, Held, Firing}
-    GunStates currentState = GunStates.Waiting;
-    FTScript timerFT;
-    TimerScript bombTimer;
 
-    Vector3 Velocity, Acceleration;
+  
+    TimerScript gunTimer;
+
     private float BulletTime = 5f;
+    private float gunCoolDown = 0.5f;
+    private float bulletDamage = 25f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Acceleration = new Vector3(0, 0, 0);
+      
     }
 
     // Update is called once per frame
@@ -27,15 +27,21 @@ public class GunScript : MonoBehaviour
     {
         switch (currentState)
         {
-            case GunStates.Waiting:
+            case PickUpItemStates.Waiting:
 
                 break;
 
-            case GunStates.Held:
+            case PickUpItemStates.Held:
 
                 break;
 
-            case GunStates.Firing:
+            case PickUpItemStates.DoYourThing:
+                if (gunTimer.RemainingTime <= 0)
+                {
+                    fireBullet();
+                    gunTimer.setCooldown(gunCoolDown);
+                }
+
 
                 break;
 
@@ -45,19 +51,25 @@ public class GunScript : MonoBehaviour
 
     }
 
-    public void GunFire(Vector3 Dir, float Speed)
+    private void fireBullet()
+    { Ray bulletRay = new Ray(transform.position, transform.forward);
+        RaycastHit info;
+
+        if (Physics.Raycast(bulletRay,out info, 500f))
+        {
+            Health objectHit = info.transform.GetComponent<Health>();
+            if (objectHit != null)
+            {
+                objectHit.Take_Damage(bulletDamage);
+            }
+        }
+    }
+
+    public void GunFire()
     {
-        Velocity = (Dir + Vector3.up) * Speed;
-        Acceleration = new Vector3(0, -9.8f, 0);
-        transform.parent = null;
-        currentState = GunStates.Firing;
+        currentState = PickUpItemStates.DoYourThing;
 
     }
 
-    internal void IvePickedYou(JoeControlScript joe)
-    {
-        currentState = GunStates.Held;
-        transform.parent = joe.myRightHand;
-        transform.localPosition = Vector3.zero;
-    }
+
 }
