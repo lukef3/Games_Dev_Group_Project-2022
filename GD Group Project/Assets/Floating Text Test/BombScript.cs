@@ -23,7 +23,7 @@ public class BombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(BombStates.Exploding);
+    
         switch(currentState)
         {
             case BombStates.Waiting:
