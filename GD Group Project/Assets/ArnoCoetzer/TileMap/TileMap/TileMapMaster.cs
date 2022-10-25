@@ -40,7 +40,10 @@ public class TileMapMaster : MonoBehaviour
     private Quaternion Tile_rotation = new Quaternion(0.70711f,0,0,-0.70711f); // rotates the spawned tile so it lies flat ... may god have mercy on you if you change this
     private bool is_map_created = false;
 
-   
+    private void Start()
+    {
+    
+    }
 
     public bool CreateMap(float radius,int levels,int radius_dec_per_level,float distance_between_levels) 
     {

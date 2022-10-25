@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JoeControlScript : MonoBehaviour
+public class JoeControlScript : MonoBehaviour,Health
 {
     enum CharacterStates {Grounded, JumpUp, Falling }
 
@@ -71,7 +71,7 @@ public class JoeControlScript : MonoBehaviour
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
-                if (shouldThrowBomb()) act();
+                if (shouldUseRight()) useRight();
                 if (shouldFireGun()) FireGun();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
@@ -132,7 +132,7 @@ public class JoeControlScript : MonoBehaviour
         return Input.GetKeyDown(KeyCode.F);
     }
 
-    private void act()
+    private void useRight()
     {
         if (rightHand is BombScript )
         {
@@ -147,7 +147,7 @@ public class JoeControlScript : MonoBehaviour
        
     }
 
-    private bool shouldThrowBomb()
+    private bool shouldUseRight()
     {
         return Input.GetKeyDown(KeyCode.T);
     }
@@ -238,5 +238,10 @@ public class JoeControlScript : MonoBehaviour
     private  bool shouldWalkForward()
     {
         return Input.GetKey(KeyCode.W);
+    }
+
+    public void Take_Damage(float damage)
+    {
+        throw new NotImplementedException();
     }
 }
