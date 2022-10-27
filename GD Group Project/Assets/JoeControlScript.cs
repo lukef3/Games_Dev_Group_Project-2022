@@ -9,7 +9,10 @@ public class JoeControlScript : MonoBehaviour
 
     internal Transform myRightHand;
 
-    BombScript joesBomb;
+    PickUP rightHand;
+
+    
+
     CharacterStates joe_state = CharacterStates.Grounded;
     private Vector3 jumping_velocity;
     float start_jump_velocity = 5;
@@ -68,7 +71,8 @@ public class JoeControlScript : MonoBehaviour
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
-                if (shouldThrowBomb()) throwBomb();
+                if (shouldThrowBomb()) act();
+                if (shouldFireGun()) FireGun();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -118,15 +122,29 @@ public class JoeControlScript : MonoBehaviour
 
     }
 
-    private void throwBomb()
+    private void FireGun()
     {
-        if (joesBomb)
+        throw new NotImplementedException();
+    }
+
+    private bool shouldFireGun()
+    {
+        return Input.GetKeyDown(KeyCode.F);
+    }
+
+    private void act()
+    {
+        if (rightHand is BombScript )
         {
-            joesBomb.BombThrow(transform.forward, 5);
-            joesBomb = null;
+            (rightHand as BombScript).BombThrow(transform.forward, 5);
+            rightHand = null;
         }
-        else
-            print("opps no bomb!!!");
+
+        if (rightHand is GunScript)
+        {
+            (rightHand as GunScript).GunFire();
+        }
+       
     }
 
     private bool shouldThrowBomb()
@@ -136,17 +154,21 @@ public class JoeControlScript : MonoBehaviour
 
     private void pickUp()
     {
-    Collider[] allPossibleBombs = Physics.OverlapSphere(transform.position, 1f);
-    foreach (Collider c in allPossibleBombs)
+    Collider[] allPossiblePickUps = Physics.OverlapSphere(transform.position, 1f);
+    foreach (Collider c in allPossiblePickUps)
         {
-            BombScript newBomb = c.transform.GetComponent<BombScript>();
-            if (newBomb)
-            {   if (joesBomb == null)
+            
+            PickUP newItem = c.transform.GetComponent<PickUP>();
+          
+            if (newItem)
+            {   if (rightHand == null)
                 {
-                    joesBomb = newBomb;
-                    joesBomb.IvePickedYou(this);
+                    rightHand = newItem;
+                    newItem.latestOwner(this);
                 }
             }
+
+
 
           
         }
