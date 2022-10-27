@@ -95,7 +95,7 @@ public class TileMapMaster : MonoBehaviour
 
     internal void SpawnTile(Vector3 location) 
     {
-        GameObject spawnedTile = Instantiate(tile, location, Tile_rotation) as GameObject; // adds the currently spawned tile to a list of spawned tiles
+        GameObject spawnedTile = Instantiate(tile, location, Tile_rotation,transform) as GameObject; // adds the currently spawned tile to a list of spawned tiles
         TileScript current_tile = spawnedTile.GetComponent<TileScript>();
         current_tile.Set_Manager(this);
         Tiles.Add(current_tile);
