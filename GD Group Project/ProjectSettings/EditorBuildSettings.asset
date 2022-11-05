@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Billy's Scene Change Menu/MainScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Billy's Scene Change Menu/SecondScene.unity
-    guid: 0a6bd903699a9564aa56458852a6e5ae
-  - enabled: 1
-    path: Assets/RobsTestScene.unity
-    guid: ba383d1dd1cdbc541addf52dcb2a2b6a
+    path: Assets/Billy's Networking Scene/LatestVersion.unity
+    guid: 5410acf6122a05c468bf02d4d72e3cee
   m_configObjects: {}
