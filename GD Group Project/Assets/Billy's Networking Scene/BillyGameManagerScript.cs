@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManagerScript : MonoBehaviour
+public class BillyGameManagerScript : MonoBehaviour
 {
 
     TileMapMaster tileManager;
@@ -14,9 +14,6 @@ public class GameManagerScript : MonoBehaviour
     {
         tileManager = FindObjectOfType<TileMapMaster>();
         tileManager.CreateMap(30, 3, 15, 20);
-
-        spawnJoe();
-
     }
 
     private void spawnJoe()
