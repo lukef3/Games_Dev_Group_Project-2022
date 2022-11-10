@@ -7,11 +7,9 @@ public class BombScript : PickUP
 { 
     FTScript timerFT;
     TimerScript bombTimer;
-    TimerScript pickUpTimer;
 
     Vector3 Velocity, Acceleration;
     private float BombTime = 5f;
-    private float pickUpTime = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +19,11 @@ public class BombScript : PickUP
 
     // Update is called once per frame
     void Update()
-    {   
-        switch(currentState)
+    {
+        switch (currentState)
         {
             case PickUpItemStates.Waiting:
-                pickUpTimer = gameObject.AddComponent<TimerScript>();
-                pickUpTimer.setCooldown(pickUpTime);
-
-                print(pickUpTimer.RemainingTime);
+                
                
                 break;
 

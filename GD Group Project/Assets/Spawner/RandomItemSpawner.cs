@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomItemSpawner : MonoBehaviour
 {
     public GameObject[] pickups;
-    float secondsBetweenSpawn = 2f;
+    float secondsBetweenSpawn = 3f;
     float elapsedTime = 0.0f;
 
     // Start is called before the first frame update
