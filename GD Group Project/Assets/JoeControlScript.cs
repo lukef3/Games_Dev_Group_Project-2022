@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class JoeControlScript : MonoBehaviour,Health
+public class JoeControlScript : NetworkBehaviour,Health
 {
     enum CharacterStates {Grounded, JumpUp, Falling }
 
@@ -59,6 +60,8 @@ public class JoeControlScript : MonoBehaviour,Health
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         current_speed = 0;
 
 
