@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombScript : MonoBehaviour
-{   enum BombStates { Waiting, Held, Thrown, Landed, Exploding}
-    BombStates currentState = BombStates.Waiting;
+public class BombScript : PickUP
+{ 
     FTScript timerFT;
     TimerScript bombTimer;
 
@@ -15,6 +14,7 @@ public class BombScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         Acceleration = new Vector3(0, 0, 0);
     }
 
@@ -23,15 +23,15 @@ public class BombScript : MonoBehaviour
     {   
         switch(currentState)
         {
-            case BombStates.Waiting:
+            case PickUpItemStates.Waiting:
 
                 break;
 
-            case BombStates.Held:
+            case PickUpItemStates.Held:
 
                 break;
 
-            case BombStates.Thrown:
+            case PickUpItemStates.Thrown:
 
                 Velocity += Acceleration * Time.deltaTime;
                 transform.position += Velocity * Time.deltaTime;
@@ -42,7 +42,7 @@ public class BombScript : MonoBehaviour
                     TileScript possibleTile = obj.transform.GetComponent<TileScript>();
                     if (possibleTile)
                     {
-                        currentState = BombStates.Landed;
+                        currentState = PickUpItemStates.Landed;
                         bombTimer = gameObject.AddComponent<TimerScript>();
                         bombTimer.setCooldown(BombTime);
                         GameObject FTGO = Instantiate(StaticFeatures.test, transform);
@@ -57,7 +57,7 @@ public class BombScript : MonoBehaviour
                         {
                             if (possibleSelf != this)
                             {
-                                currentState = BombStates.Exploding;
+                                currentState = PickUpItemStates.DoYourThing;
                             }
                         }
                        
@@ -69,14 +69,14 @@ public class BombScript : MonoBehaviour
  
                 }
                 break;
-            case BombStates.Landed:
+            case PickUpItemStates.Landed:
                 timerFT.setText(((int) bombTimer.RemainingTime).ToString());
                 if (bombTimer.RemainingTime <= 0)
-                    currentState = BombStates.Exploding;
+                    currentState = PickUpItemStates.DoYourThing;
 
                 break;
 
-            case BombStates.Exploding:
+            case PickUpItemStates.DoYourThing:
 
 
                 break;
@@ -90,14 +90,9 @@ public class BombScript : MonoBehaviour
         Velocity = (Dir + Vector3.up) * Speed;
         Acceleration = new Vector3(0, -9.8f, 0);
         transform.parent = null;
-        currentState = BombStates.Thrown;
+        currentState = PickUpItemStates.Thrown;
 
     }
 
-    internal void IvePickedYou(JoeControlScript joe)
-    {
-        currentState = BombStates.Held;
-        transform.parent = joe.myRightHand;
-        transform.localPosition = Vector3.zero;
-    }
+
 }
