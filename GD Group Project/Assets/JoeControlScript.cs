@@ -76,6 +76,7 @@ public class JoeControlScript : NetworkBehaviour,Health
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
                 if (shouldUseRight()) useRight();
+                if (shouldFireGun)
                 if (shouldFireGun()) FireGun();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
