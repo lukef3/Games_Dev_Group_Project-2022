@@ -75,9 +75,9 @@ public class JoeControlScript : NetworkBehaviour,Health
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
-                if (shouldUseRight()) useRight();
-                if (shouldFireGun)
-                if (shouldFireGun()) FireGun();
+               /* if (shouldUseRight()) useRight()
+                if (shouldPointGun()) pointGun();
+                if (shouldFireGun()) FireGun();*/
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -129,16 +129,35 @@ public class JoeControlScript : NetworkBehaviour,Health
 
 
     }
-
-    private void FireGun()
+  /*  private void pointGun()
     {
-        throw new NotImplementedException();
+        if (Input.GetKeyDown(KeyCode.Q) 
+            
+            {
+            joe_animator.setBool("isPointing", true);
+        }
+
+        if (!Input.GetKeyDown(KeyCode.Q); 
+        {
+            joe_animator.SetBool("isPointing", false);
+        }
+
     }
 
-    private bool shouldFireGun()
+    private bool shouldPointGun()
     {
-        return Input.GetKeyDown(KeyCode.F);
-    }
+        return Input.GetKeyDown(KeyCode.Q);
+    }*/
+
+    /*private void FireGun()
+     {
+         throw new NotImplementedException();
+     }
+
+     private bool shouldFireGun()
+     {
+         return Input.GetKeyDown(KeyCode.F);
+     }*/
 
     private void useRight()
     {
