@@ -75,7 +75,7 @@ public class JoeControlScript : NetworkBehaviour,Health
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
-               /* if (shouldUseRight()) useRight()
+               /*if (shouldUseRight()) useRight()
                 if (shouldPointGun()) pointGun();
                 if (shouldFireGun()) FireGun();*/
                 if (shouldJump()) jump();
