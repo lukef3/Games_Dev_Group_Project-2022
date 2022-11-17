@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,14 @@ using UnityEngine;
 public class PickUpTimer : MonoBehaviour
 {
     FTScript pickUpTimerFT;
-    private float pickUpTime = 5f;
+    public float pickUpTime = 20f;
+    private GameObject FTGO;
     // Start is called before the first frame update
     void Start()
     {
-        /*GameObject FTGO = Instantiate(StaticFeatures.test, transform);
+        FTGO = Instantiate(StaticFeatures.test, this.gameObject.transform);
         pickUpTimerFT = FTGO.GetComponent<FTScript>();
-        pickUpTimerFT.setColour(Color.red);*/
+        pickUpTimerFT.SetColour(Color.black);
     }
 
     // Update is called once per frame
@@ -21,11 +23,16 @@ public class PickUpTimer : MonoBehaviour
 
         print(pickUpTime);
 
-        //pickUpTimerFT.setText(((int)pickUpTime).ToString());
+        /*if(BombScript.PickUpItemStates.Held == 0)
+        {
+            Destroy(FTGO);
+        }*/
+
+        pickUpTimerFT.SetText(((int)pickUpTime).ToString());
 
         if (pickUpTime <= 0)
         {
-            if (BombScript.PickUpItemStates.Waiting == 0)
+            if (PickUP.PickUpItemStates.Waiting == 0)
             {
                 Destroy(this.gameObject);
             }
