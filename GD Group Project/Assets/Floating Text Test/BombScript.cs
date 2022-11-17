@@ -47,7 +47,7 @@ public class BombScript : PickUP
                         bombTimer.setCooldown(BombTime);
                         GameObject FTGO = Instantiate(StaticFeatures.test, transform);
                         timerFT = FTGO.GetComponent<FTScript>();
-                        timerFT.setColour(Color.red);
+                        timerFT.SetColour(Color.red);
                     }
 
                     else
@@ -71,7 +71,7 @@ public class BombScript : PickUP
                 break;
 
             case PickUpItemStates.Landed:
-                timerFT.setText(((int) bombTimer.RemainingTime).ToString());
+                timerFT.SetText(((int) bombTimer.RemainingTime).ToString());
                 if (bombTimer.RemainingTime <= 0)
                     currentState = PickUpItemStates.DoYourThing;
 
