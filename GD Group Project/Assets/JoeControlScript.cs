@@ -75,9 +75,13 @@ public class JoeControlScript : NetworkBehaviour,Health
                 if (shouldTurnLeft()) turn_left();
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
-               /*if (shouldUseRight()) useRight()
+                if (shouldUseRight()) useRight();
                 if (shouldPointGun()) pointGun();
-                if (shouldFireGun()) FireGun();*/
+                else
+                    unPointGun();
+                if (shouldFireGun()) FireGun();
+                else
+                    StopFiring();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -129,35 +133,42 @@ public class JoeControlScript : NetworkBehaviour,Health
 
 
     }
-  /*  private void pointGun()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) 
-            
-            {
-            joe_animator.setBool("isPointing", true);
-        }
 
-        if (!Input.GetKeyDown(KeyCode.Q); 
-        {
-            joe_animator.SetBool("isPointing", false);
-        }
+    private void StopFiring()
+    {
+        joe_animator.SetBool("isFiring",false);
+    }
+
+    private void unPointGun()
+    {
+        joe_animator.SetBool("isPointing", false);
+    }
+
+    private void pointGun()
+    {
+
+            joe_animator.SetBool("isPointing", true);
+        
+
+
 
     }
 
     private bool shouldPointGun()
     {
-        return Input.GetKeyDown(KeyCode.Q);
-    }*/
+        return Input.GetMouseButton(1);
+           
+    }
 
-    /*private void FireGun()
+    private void FireGun()
      {
-         throw new NotImplementedException();
+        joe_animator.SetBool("isFiring", true);
      }
 
      private bool shouldFireGun()
      {
-         return Input.GetKeyDown(KeyCode.F);
-     }*/
+        return Input.GetMouseButton(0);
+     }
 
     private void useRight()
     {
