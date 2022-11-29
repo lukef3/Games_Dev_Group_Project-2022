@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class JoeControlScript : MonoBehaviour,Health
+public class JoeControlScript : NetworkBehaviour,Health
 {
     enum CharacterStates {Grounded, JumpUp, Falling }
 
@@ -59,6 +60,8 @@ public class JoeControlScript : MonoBehaviour,Health
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         current_speed = 0;
 
 
@@ -73,7 +76,12 @@ public class JoeControlScript : MonoBehaviour,Health
                 if (shouldTurnRight()) turn_right();
                 if (shouldPickUp()) pickUp();
                 if (shouldUseRight()) useRight();
+                if (shouldPointGun()) pointGun();
+                else
+                    unPointGun();
                 if (shouldFireGun()) FireGun();
+                else
+                    StopFiring();
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -126,15 +134,41 @@ public class JoeControlScript : MonoBehaviour,Health
 
     }
 
-    private void FireGun()
+    private void StopFiring()
     {
-        throw new NotImplementedException();
+        joe_animator.SetBool("isFiring",false);
     }
 
-    private bool shouldFireGun()
+    private void unPointGun()
     {
-        return Input.GetKeyDown(KeyCode.F);
+        joe_animator.SetBool("isPointing", false);
     }
+
+    private void pointGun()
+    {
+
+            joe_animator.SetBool("isPointing", true);
+        
+
+
+
+    }
+
+    private bool shouldPointGun()
+    {
+        return Input.GetMouseButton(1);
+           
+    }
+
+    private void FireGun()
+     {
+        joe_animator.SetBool("isFiring", true);
+     }
+
+     private bool shouldFireGun()
+     {
+        return Input.GetMouseButton(0);
+     }
 
     private void useRight()
     {

@@ -21,12 +21,12 @@ public class GameManagerScript : MonoBehaviour
 
     private void spawnJoe()
     {
-        Transform joe = Instantiate(joeCloneTemplate, Vector3.zero,Quaternion.identity);
+        Transform joe = Instantiate(joeCloneTemplate, Vector3.zero, Quaternion.identity);
         GameObject joeCameraGO = new GameObject("JoeCamGO");
         joeCameraGO.transform.parent = joe.transform;
         joeCameraGO.transform.localPosition = new Vector3(0, 1, -2);
-        
-        Camera joeCam = joeCameraGO.gameObject.AddComponent <Camera>();
+
+        Camera joeCam = joeCameraGO.gameObject.AddComponent<Camera>();
         Camera.main.tag = "Untagged";
         joeCam.tag = "MainCamera";
     }
