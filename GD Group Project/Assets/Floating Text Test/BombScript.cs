@@ -14,17 +14,17 @@ public class BombScript : PickUP
     // Start is called before the first frame update
     void Start()
     {
-        
         Acceleration = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        switch(currentState)
+    {
+        switch (currentState)
         {
             case PickUpItemStates.Waiting:
-
+                
+               
                 break;
 
             case PickUpItemStates.Held:
@@ -47,7 +47,7 @@ public class BombScript : PickUP
                         bombTimer.setCooldown(BombTime);
                         GameObject FTGO = Instantiate(StaticFeatures.test, transform);
                         timerFT = FTGO.GetComponent<FTScript>();
-                        timerFT.setColour(Color.red);
+                        timerFT.SetColour(Color.red);
                     }
 
                     else
@@ -69,8 +69,9 @@ public class BombScript : PickUP
  
                 }
                 break;
+
             case PickUpItemStates.Landed:
-                timerFT.setText(((int) bombTimer.RemainingTime).ToString());
+                timerFT.SetText(((int) bombTimer.RemainingTime).ToString());
                 if (bombTimer.RemainingTime <= 0)
                     currentState = PickUpItemStates.DoYourThing;
 
