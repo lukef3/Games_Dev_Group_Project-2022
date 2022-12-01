@@ -6,7 +6,7 @@ using UnityEngine;
 public class PickUpTimer : MonoBehaviour
 {
     FTScript pickUpTimerFT;
-    public float pickUpTime = 20f;
+    public float pickUpTime = 40f;
     private GameObject FTGO;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class PickUpTimer : MonoBehaviour
     {
         pickUpTime -= Time.deltaTime;
 
-        print(pickUpTime);
+        print(pickUpTime); 
 
         /*if(BombScript.PickUpItemStates.Held == 0)
         {
@@ -37,5 +37,11 @@ public class PickUpTimer : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    internal void remove()
+    {
+        Destroy(FTGO);
+        Destroy(this);
     }
 }
