@@ -67,7 +67,7 @@ public class JoeControlScript : NetworkBehaviour,Health
     // Update is called once per frame
     void Update()
     {
-        if (!IsOwner) return;
+       // if (!IsOwner) return;
 
         current_speed = 0;
 
