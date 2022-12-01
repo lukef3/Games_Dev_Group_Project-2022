@@ -30,5 +30,7 @@ public class PickUP : MonoBehaviour
         transform.parent = joe.myRightHand;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
+        PickUpTimer timer = GetComponent<PickUpTimer>();
+        timer.remove();
     }
 }
