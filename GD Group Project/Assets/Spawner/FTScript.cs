@@ -8,7 +8,6 @@ public class FTScript : MonoBehaviour
 {
 
     TMP_Text FloatingText;
-    TimerScript my_timer;
     private Color textColor;
 
     // Start is called before the first frame update
@@ -17,7 +16,7 @@ public class FTScript : MonoBehaviour
         FloatingText = GetComponentInChildren<TMP_Text>();
     }
 
-    internal void setText(String textMessage)
+    internal void SetText(String textMessage)
     {
         FloatingText.text = textMessage;
     }
@@ -34,7 +33,7 @@ public class FTScript : MonoBehaviour
   
     }
 
-    internal void setColour(Color colorProvided)
+    internal void SetColour(Color colorProvided)
     {
         textColor = colorProvided;
     }
