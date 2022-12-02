@@ -24,10 +24,10 @@ public class PickUP : MonoBehaviour
     }
 
 
-    internal void latestOwner(JoeControlScript joe)
+    internal void latestOwner(JoeControlScript joe, Transform hand)
     {
         currentState = PickUpItemStates.Held;
-        transform.parent = joe.myRightHand;
+        transform.parent = hand;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
     }
