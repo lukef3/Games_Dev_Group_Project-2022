@@ -21,13 +21,6 @@ public class PickUpTimer : MonoBehaviour
     {
         pickUpTime -= Time.deltaTime;
 
-        print(pickUpTime); 
-
-        /*if(BombScript.PickUpItemStates.Held == 0)
-        {
-            Destroy(FTGO);
-        }*/
-
         pickUpTimerFT.SetText(((int)pickUpTime).ToString());
 
         if (pickUpTime <= 0)

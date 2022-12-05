@@ -25,7 +25,7 @@ public class JoeControlScript : NetworkBehaviour,Health
     private Vector3 jumping_velocity;
     float start_jump_velocity = 10;
 
-    private float walking_speed = 2;
+    private float walking_speed = 5;
     private float running_speed = 4;
     float current_speed = 0;
 
