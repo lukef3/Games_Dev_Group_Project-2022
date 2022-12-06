@@ -8,6 +8,7 @@ public class GameManagerScript : MonoBehaviour
 
     TileMapMaster tileManager;
     public Transform joeCloneTemplate;
+    Vector3 spawnJoePosition = new Vector3(0, 1, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void spawnJoe()
     {
-        Transform joe = Instantiate(joeCloneTemplate, Vector3.zero, Quaternion.identity);
+        Transform joe = Instantiate(joeCloneTemplate, spawnJoePosition, Quaternion.identity);
         GameObject joeCameraGO = new GameObject("JoeCamGO");
         joeCameraGO.transform.parent = joe.transform;
         joeCameraGO.transform.localPosition = new Vector3(0, 1, -2);
