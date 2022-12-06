@@ -9,13 +9,19 @@ public class BombScript : PickUP
     TimerScript bombTimer;
     public GameObject boom;
 
+    public Material bombMat;
+    public Material heatingUpMat;
+    Renderer rend;
+
     Vector3 Velocity, Acceleration;
-    private float BombTime = 6f;
+    private float BombTime = 4f;
 
     // Start is called before the first frame update
     void Start()
     {
         Acceleration = new Vector3(0, 0, 0);
+        rend = GetComponent<Renderer>();
+        rend.material = bombMat;
     }
 
     // Update is called once per frame
@@ -73,6 +79,8 @@ public class BombScript : PickUP
 
             case PickUpItemStates.Landed:
                 timerFT.SetText(((int) bombTimer.RemainingTime).ToString());
+                float lerp = Mathf.PingPong(Time.time, BombTime) / BombTime;
+                rend.material.Lerp(bombMat, heatingUpMat, lerp);
                 if (bombTimer.RemainingTime <= 1)
                     currentState = PickUpItemStates.DoYourThing;
 
@@ -91,7 +99,6 @@ public class BombScript : PickUP
                         TakeDamage(possibleTile, dist);
                         Instantiate(boom, transform.position, transform.rotation);
                         Destroy(gameObject);
-                        
                     }
                 }
 

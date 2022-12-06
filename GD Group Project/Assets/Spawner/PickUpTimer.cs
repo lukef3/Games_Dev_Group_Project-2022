@@ -6,7 +6,7 @@ using UnityEngine;
 public class PickUpTimer : MonoBehaviour
 {
     FTScript pickUpTimerFT;
-    public float pickUpTime = 40f;
+    private float pickUpTime = 30f;
     private GameObject FTGO;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +14,7 @@ public class PickUpTimer : MonoBehaviour
         FTGO = Instantiate(StaticFeatures.test, this.gameObject.transform);
         pickUpTimerFT = FTGO.GetComponent<FTScript>();
         pickUpTimerFT.SetColour(Color.black);
+        FTGO.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,7 +22,17 @@ public class PickUpTimer : MonoBehaviour
     {
         pickUpTime -= Time.deltaTime;
 
-        pickUpTimerFT.SetText(((int)pickUpTime).ToString());
+
+        if(pickUpTime < 11)
+        {
+            FTGO.SetActive(true);
+            pickUpTimerFT.SetText(((int)pickUpTime).ToString());
+        }
+
+        if(pickUpTime < 6)
+        {
+            pickUpTimerFT.SetColour(Color.yellow);
+        }
 
         if (pickUpTime <= 0)
         {
