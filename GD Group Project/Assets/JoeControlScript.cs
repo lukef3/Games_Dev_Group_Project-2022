@@ -10,7 +10,17 @@ public class JoeControlScript : NetworkBehaviour,Health
 
     internal Transform myRightHand, myLeftHand;
 
+
     PickUP rightHand, leftHand;
+
+    [SerializeField]
+    private GameObject Bullet;
+    [SerializeField]
+        private Transform WaterpistolTransform; //Reference to waterpistol//
+    [SerializeField]
+    private Transform BulletParent; //place all the bullet under this parent//
+    [SerializeField]
+    private float bulletHitMissDistance = 25f;
 
     
 
@@ -66,7 +76,9 @@ public class JoeControlScript : NetworkBehaviour,Health
     // Update is called once per frame
     void Update()
     {
+
         //if (!IsOwner) return;
+
 
         current_speed = 0;
 
@@ -87,7 +99,10 @@ public class JoeControlScript : NetworkBehaviour,Health
                      unPointGun();
                 if (shouldFireGun()) FireGun();
                 else
-                    StopFiring();
+                    UnFireGun();
+                
+  
+                
                 if (shouldJump()) jump();
                 transform.position += current_speed * transform.forward * Time.deltaTime;
                 break;
@@ -140,9 +155,9 @@ public class JoeControlScript : NetworkBehaviour,Health
 
     }
 
-    private void StopFiring()
+    private void UnFireGun()
     {
-        joe_animator.SetBool("isFiring",false);
+        joe_animator.SetBool("isFiring", false);
     }
 
     private void unPointGun()
@@ -165,16 +180,37 @@ public class JoeControlScript : NetworkBehaviour,Health
         return Input.GetMouseButton(1);
            
     }
-
+    private Transform cameraTransform;
     private void FireGun()
      {
         joe_animator.SetBool("isFiring", true);
-     }
+       
+        RaycastHit hit;
+
+        GameObject bullet = GameObject.Instantiate(Bullet, WaterpistolTransform.position, Quaternion.identity, BulletParent);
+        BulletController bulletController = Bullet.GetComponent<BulletController>();
+        if (Physics.Raycast(cameraTransform.position,cameraTransform.forward,out hit, Mathf.Infinity)) //Mathf is the distance for the raycast to follow// 
+        {
+                   
+            
+            bulletController.target = hit.point;
+                     bulletController.hit = true;
+                
+        }
+        else
+        {
+
+            bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
+            bulletController.hit = false;
+        }
+
+    }
 
      private bool shouldFireGun()
      {
         return Input.GetMouseButton(0);
      }
+ 
 
     private void useRight()
     {
