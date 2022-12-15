@@ -9,11 +9,11 @@ public class BombScript : PickUP
     TimerScript bombTimer;
     public GameObject boom;
 
+    GameObject FTGO;
+
     public Material bombMat;
     public Material heatingUpMat;
     Renderer rend;
-
-    public Boolean canBePickedUp = true;
 
     Vector3 Velocity, Acceleration;
     private float BombTime = 4f;
@@ -37,7 +37,8 @@ public class BombScript : PickUP
                 break;
 
             case PickUpItemStates.Held:
-
+                rend.material = bombMat;
+                Destroy(FTGO);
                 break;
 
             case PickUpItemStates.Thrown:
@@ -56,7 +57,7 @@ public class BombScript : PickUP
                         currentState = PickUpItemStates.Landed;
                         bombTimer = gameObject.AddComponent<TimerScript>();
                         bombTimer.setCooldown(BombTime);
-                        GameObject FTGO = Instantiate(StaticFeatures.test, transform);
+                        FTGO = Instantiate(StaticFeatures.test, transform);
                         timerFT = FTGO.GetComponent<FTScript>();
                         timerFT.SetColour(Color.red);
                     }
@@ -76,7 +77,6 @@ public class BombScript : PickUP
                 break;
 
             case PickUpItemStates.Landed:
-                canBePickedUp = false;
                 timerFT.SetText(((int) bombTimer.RemainingTime).ToString());
                 rend.material = heatingUpMat;
                 if (bombTimer.RemainingTime <= 1)
