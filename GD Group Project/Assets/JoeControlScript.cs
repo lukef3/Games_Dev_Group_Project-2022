@@ -226,9 +226,9 @@ public class JoeControlScript : NetworkBehaviour,Health
     Collider[] allPossiblePickUps = Physics.OverlapSphere(transform.position, 1f);
     foreach (Collider c in allPossiblePickUps)
         {
-            
+           
             PickUP newItem = c.transform.GetComponent<PickUP>();
-          
+            
             if (newItem)
             {   if (rightHand == null)
                 {

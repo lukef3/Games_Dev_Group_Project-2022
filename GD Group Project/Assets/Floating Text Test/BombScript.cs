@@ -13,6 +13,8 @@ public class BombScript : PickUP
     public Material heatingUpMat;
     Renderer rend;
 
+    public Boolean canBePickedUp = true;
+
     Vector3 Velocity, Acceleration;
     private float BombTime = 4f;
 
@@ -43,7 +45,9 @@ public class BombScript : PickUP
                 Velocity += Acceleration * Time.deltaTime;
                 transform.position += Velocity * Time.deltaTime;
 
-                Collider[] objsHit = Physics.OverlapSphere(transform.position, 0.02f);
+                transform.rotation = Quaternion.identity;
+
+                Collider[] objsHit = Physics.OverlapSphere(transform.position, 0.05f);
                 foreach(Collider obj in objsHit)
                 {
                     TileScript possibleTile = obj.transform.GetComponent<TileScript>();
@@ -67,20 +71,14 @@ public class BombScript : PickUP
                                 currentState = PickUpItemStates.DoYourThing;
                             }
                         }
-                       
-
-                      
-
                     }
-
- 
                 }
                 break;
 
             case PickUpItemStates.Landed:
+                canBePickedUp = false;
                 timerFT.SetText(((int) bombTimer.RemainingTime).ToString());
-                float lerp = Mathf.PingPong(Time.time, BombTime) / BombTime;
-                rend.material.Lerp(bombMat, heatingUpMat, lerp);
+                rend.material = heatingUpMat;
                 if (bombTimer.RemainingTime <= 1)
                     currentState = PickUpItemStates.DoYourThing;
 
