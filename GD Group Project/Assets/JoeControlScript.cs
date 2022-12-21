@@ -229,7 +229,7 @@ public class JoeControlScript : NetworkBehaviour,Health
            
             PickUP newItem = c.transform.GetComponent<PickUP>();
             
-            if (newItem)
+            if (newItem && (newItem.currentState != PickUP.PickUpItemStates.Held))
             {   if (rightHand == null)
                 {
 
