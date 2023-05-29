@@ -8,9 +8,11 @@ public class JoeControlScript : NetworkBehaviour,Health
 {
     enum CharacterStates {Grounded, JumpUp, Falling }
 
-    internal Transform myRightHand;
+    internal Transform myRightHand, myLeftHand;
 
-    PickUP rightHand;
+
+    PickUP rightHand, leftHand;
+
     [SerializeField]
     private GameObject Bullet;
     [SerializeField]
@@ -19,6 +21,7 @@ public class JoeControlScript : NetworkBehaviour,Health
     private Transform BulletParent; //place all the bullet under this parent//
     [SerializeField]
     private float bulletHitMissDistance = 25f;
+
     
 
     CharacterStates joe_state = CharacterStates.Grounded;
@@ -37,7 +40,7 @@ public class JoeControlScript : NetworkBehaviour,Health
     // Start is called before the first frame update
     void Start()
     {
-        myRightHand = getRightHand();
+         getHands();
 
         joe_animator = GetComponent<Animator>();
         if (joe_animator)
@@ -47,16 +50,22 @@ public class JoeControlScript : NetworkBehaviour,Health
 
     }
 
-    private Transform getRightHand()
+    private Transform getHands()
     {
         Transform[] allBones = transform.GetComponentsInChildren<Transform>();
         foreach (Transform bone in allBones)
         {
             if (bone.name == "HoldRight")
             {
-                return bone;
+                myRightHand= bone;
 
             }
+            if (bone.name == "HoldLeft")
+            {
+                myLeftHand = bone;
+
+            }
+
 
 
         }
@@ -67,7 +76,9 @@ public class JoeControlScript : NetworkBehaviour,Health
     // Update is called once per frame
     void Update()
     {
-       // if (!IsOwner) return;
+
+        //if (!IsOwner) return;
+
 
         current_speed = 0;
 
@@ -85,7 +96,7 @@ public class JoeControlScript : NetworkBehaviour,Health
                 if (shouldUseRight()) useRight();
                 if (shouldPointGun()) pointGun();
                 else
-                    unPointGun();
+                     unPointGun();
                 if (shouldFireGun()) FireGun();
                 else
                     UnFireGun();
@@ -216,10 +227,28 @@ public class JoeControlScript : NetworkBehaviour,Health
        
     }
 
+    private void useLeft()
+    {
+        if(leftHand is BombScript)
+        {
+
+            (leftHand as BombScript).BombThrow(transform.forward, 5);
+            leftHand = null;
+        }
+
+        if(leftHand is GunScript)
+        {
+            (leftHand as GunScript).GunFire();
+        }
+
+    }
+
     private bool shouldUseRight()
     {
         return Input.GetKeyDown(KeyCode.T);
     }
+
+    
 
     private void pickUp()
     {
@@ -228,14 +257,26 @@ public class JoeControlScript : NetworkBehaviour,Health
         {
            
             PickUP newItem = c.transform.GetComponent<PickUP>();
+
             
             if (newItem && (newItem.currentState != PickUP.PickUpItemStates.Held))
+
             {   if (rightHand == null)
                 {
 
                     joe_animator.SetBool("isPickingUp", true);
                     rightHand = newItem;
-                    newItem.latestOwner(this);
+                    newItem.latestOwner(this, myRightHand);
+                }
+
+            else
+                
+              if (leftHand == null)
+                    {
+                        joe_animator.SetBool("isPickingUp", true);
+                    leftHand = newItem;
+                    newItem.latestOwner(this,myLeftHand);
+
                 }
             }
 
